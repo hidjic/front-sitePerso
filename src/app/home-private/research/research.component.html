@@ -1,0 +1,40 @@
+<div fxLayout="column">
+    <h2 fxLayoutAlign="center">Recherche</h2>
+
+    <div class="researchArea" fxLayout="row" fxLayoutAlign="start center">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Type de recherche</mat-label>
+            <mat-select>
+                <mat-option value="artist">Artist</mat-option>
+                <mat-option value="album">Album</mat-option>
+                <mat-option value="playlist">Playlist</mat-option>
+            </mat-select>
+            <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field hintLabel="Max 60 characters" appearance="fill">
+            <mat-label>Enter some input</mat-label>
+            <input matInput #input maxlength="60">
+            <mat-hint align="end">{{input.value?.length || 0}}/60</mat-hint>
+        </mat-form-field>
+
+        <button mat-fab color="primary" aria-label="Example icon button with a search icon">
+            <mat-icon>search</mat-icon>
+        </button>
+
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div>
+        <h2>Recherche local</h2>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div>
+        <h2>Recherche API Spotify</h2>
+    </div>
+
+</div>

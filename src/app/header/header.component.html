@@ -1,0 +1,14 @@
+<div fxLayout="row">
+  <div fxFlex="80">
+    <button *ngIf="!isAuth" mat-button routerLink="home/public" routerLinkActive="active">Accueil</button>
+    <button *ngIf="isAuth" mat-button routerLink="bo" routerLinkActive="active">Accueil (BO...)</button>
+  </div>
+  <div>
+    <button mat-button routerLink="auth/signup" routerLinkActive="active"
+            *ngIf="isAuth">Créer un compte</button>
+    <button mat-button routerLink="auth/signin" routerLinkActive="active"
+            *ngIf="!isAuth">Connexion</button>
+    <button mat-button routerLink="" routerLinkActive="active" 
+            *ngIf="isAuth" (click)="onSignOut()">Déconnexion</button>
+  </div>
+</div>
