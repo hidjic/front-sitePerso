@@ -1,11 +1,11 @@
 <div fxLayout="column">
     <h2 fxLayoutAlign="center">Recherche</h2>
 
-    <div class="researchArea" fxLayout="row" fxLayoutAlign="start center">
+    <form (ngSubmit)="onSubmit()" class="researchArea" fxLayout="row" fxLayoutAlign="start center">
 
         <mat-form-field appearance="fill">
             <mat-label>Type de recherche</mat-label>
-            <mat-select>
+            <mat-select [formControl]="typeResearch">
                 <mat-option value="artist">Artist</mat-option>
                 <mat-option value="album">Album</mat-option>
                 <mat-option value="playlist">Playlist</mat-option>
@@ -15,15 +15,16 @@
 
         <mat-form-field hintLabel="Max 60 characters" appearance="fill">
             <mat-label>Enter some input</mat-label>
-            <input matInput #input maxlength="60">
+            <input matInput #input maxlength="60" [formControl]="valueResearch">
             <mat-hint align="end">{{input.value?.length || 0}}/60</mat-hint>
         </mat-form-field>
 
-        <button mat-fab color="primary" aria-label="Example icon button with a search icon">
+        <button mat-fab color="primary" aria-label="Example icon button with a search icon"
+                [disabled]="typeResearch.invalid || valueResearch.invalid">
             <mat-icon>search</mat-icon>
         </button>
 
-    </div>
+    </form>
 
     <mat-divider></mat-divider>
 
@@ -35,6 +36,17 @@
 
     <div>
         <h2>Recherche API Spotify</h2>
+        <div *ngIf="resultSearch">
+            <div>nombre de réponse : {{ resultSearch?.length || '0' }}</div>
+            <div *ngFor="let res of resultSearch">
+                <li>id : {{ res.id }}</li>
+                <li>name : {{ res.name }}</li>
+                <li>popularity : {{ res.popularity }}</li>
+                <li>genres : {{ res.genres }}</li>
+                <li>followers : {{ res.followers.total }}</li>
+                <li>images : {{ res.images[0].url }}</li>
+            </div>
+        </div>
     </div>
 
 </div>

@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private urlApi = 'http://localhost:8080';
+  // private urlApi = 'http://localhost:8080';
+  private urlApi = environment.apiUrl;
   private urlAuthorization = this.urlApi + '/authorization';
   private urlLogin = this.urlAuthorization + '/login';
 
@@ -26,6 +28,8 @@ export class AuthService {
   }
 
   signInUser(email: string, password: string) {
+    email = 'admin@admin.com';
+    password = 'azerty';
     return new Promise(
       (resolve, reject) => {
         firebase.auth().signInWithEmailAndPassword(email, password).then(
