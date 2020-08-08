@@ -37,14 +37,21 @@
     <div>
         <h2>Recherche API Spotify</h2>
         <div *ngIf="resultSearch">
-            <div>nombre de réponse : {{ resultSearch?.length || '0' }}</div>
+            <div>nombre de réponse : {{ resultSearch.length || '0' }}</div>
             <div *ngFor="let res of resultSearch">
-                <li>id : {{ res.id }}</li>
-                <li>name : {{ res.name }}</li>
-                <li>popularity : {{ res.popularity }}</li>
-                <li>genres : {{ res.genres }}</li>
-                <li>followers : {{ res.followers.total }}</li>
-                <li>images : {{ res.images[0].url }}</li>
+                <div>
+                    <img *ngIf="res.images[0]" src="{{ res.images[1].url }}" alt="photo of {{ res.name }}">
+                    <span *ngIf="!res.images[0]" class="material-icons">image_not_supported</span>
+                </div>
+                <div>
+                    <li>{{ res.images[0].height }}</li>
+                    <li>{{ res.images[0].width }}</li>
+                    <li>id : {{ res.id }}</li>
+                    <li>name : {{ res.name }}</li>
+                    <li>popularity : {{ res.popularity }}</li>
+                    <li>genres : {{ res.genres }}</li>
+                    <li>followers : {{ res.followers.total }}</li> 
+                </div>
             </div>
         </div>
     </div>
