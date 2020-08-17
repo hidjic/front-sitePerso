@@ -34,24 +34,28 @@
 
     <mat-divider></mat-divider>
 
-    <div>
+    <div class="searchApi">
         <h2>Recherche API Spotify</h2>
         <div *ngIf="resultSearch">
             <div>nombre de réponse : {{ resultSearch.length || '0' }}</div>
             <div *ngFor="let res of resultSearch">
-                <div>
-                    <img *ngIf="res.images[0]" src="{{ res.images[1].url }}" alt="photo of {{ res.name }}">
-                    <span *ngIf="!res.images[0]" class="material-icons">image_not_supported</span>
+                <div class="resultSearch" fxLayout="row">
+                    <div fxFlex="20" fxLayoutAlign="center center">
+                        <img *ngIf="res.images[0]" src="{{ res.images[1].url }}" alt="photo of {{ res.name }}">
+                        <span *ngIf="!res.images[0]" class="material-icons">image_not_supported</span>
+                    </div>
+                    <div fxFlex="70">
+                        <li>id : {{ res.id }}</li>
+                        <li>name : {{ res.name }}</li>
+                        <li>popularity : {{ res.popularity }}</li>
+                        <li>genres : {{ res.genres }}</li>
+                        <li>followers : {{ res.followers.total | number }}</li>
+                    </div>
+                    <div fxLayoutAlign="center center">
+                        <button mat-raised-button color="primary">Editer</button>
+                    </div>
                 </div>
-                <div>
-                    <li>{{ res.images[0].height }}</li>
-                    <li>{{ res.images[0].width }}</li>
-                    <li>id : {{ res.id }}</li>
-                    <li>name : {{ res.name }}</li>
-                    <li>popularity : {{ res.popularity }}</li>
-                    <li>genres : {{ res.genres }}</li>
-                    <li>followers : {{ res.followers.total }}</li> 
-                </div>
+                <mat-divider></mat-divider>
             </div>
         </div>
     </div>

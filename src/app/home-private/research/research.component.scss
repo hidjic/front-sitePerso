@@ -5,9 +5,23 @@
     button{
         margin-left: 20px;
     }
+    margin-bottom: 3em;;
 }
 
 mat-divider{
     width: 90%;
-    margin: 3em 0 0 5%;
+    // margin: 3em 0 0 5%;
+    margin-left: 5%;
+}
+
+img{
+    width: 100px;
+    height: 100px;
+}
+
+.searchApi{
+    margin: 1em 0 0 1em;
+}
+.resultSearch{
+    margin: 1em 0;
 }
