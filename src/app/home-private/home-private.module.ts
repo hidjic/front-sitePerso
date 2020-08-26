@@ -11,6 +11,7 @@ import { ResearchComponent } from './research/research.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ArtistEditComponent } from './artist-edit/artist-edit.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DashboardComponent,
     ResearchComponent,
     SidenavComponent,
-    HomeComponent
+    HomeComponent,
+    ArtistEditComponent,
   ],
   imports: [
     CommonModule,

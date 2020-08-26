@@ -1,4 +1,4 @@
-export class ArtistSearchSpotify {
+export class ArtistSpotify {
     id: string;
     name: string;
     popularity: number;

@@ -52,7 +52,10 @@
                         <li>followers : {{ res.followers.total | number }}</li>
                     </div>
                     <div fxLayoutAlign="center center">
-                        <button mat-raised-button color="primary">Editer</button>
+                        <!-- <button mat-raised-button routerLink="../editionartist/{{res.id}}" 
+                                routerLinkActive="active" color="primary">Editer</button> -->
+                        <button mat-raised-button routerLink="../editionartist" 
+                                routerLinkActive="active" (click)="editArtistData(res)" color="primary">Editer</button>
                     </div>
                 </div>
                 <mat-divider></mat-divider>

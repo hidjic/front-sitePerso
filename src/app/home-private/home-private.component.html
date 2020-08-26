@@ -3,7 +3,7 @@
     
     <app-sidenav fxFlex="10" class="sidenav"></app-sidenav>
 
-    <div fxFlex="80" class="container">
+    <div fxFlex="80" class="container" [artist]="artistEdit" (artistEditEvent)="artistToEdit($event)">
         <router-outlet></router-outlet>
     </div>
 

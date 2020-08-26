@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { ArtistSearchSpotify } from '../models/artist-search-spotify';
+import { ArtistSpotify } from '../models/artist-spotify';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,12 +13,12 @@ export class ResearchService {
 
   constructor(private http: HttpClient) { }
 
-  searchInApi(type: string, research: string): Observable<ArtistSearchSpotify[]> {
-    console.log('type => ' + type);
-    console.log('research => ' + research);
+  searchInApi(type: string, research: string): Observable<ArtistSpotify[]> {
+    // console.log('type => ' + type);
+    // console.log('research => ' + research);
     const url = this.urlApi + '/' + type + '/searchByName?name=' + research;
-    console.log('url => ' + url);
-    return this.http.get<ArtistSearchSpotify[]>(url);
+    // console.log('url => ' + url);
+    return this.http.get<ArtistSpotify[]>(url);
   }
 
 }

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
 import { ResearchService } from '../../services/research.service';
-import { ArtistSearchSpotify } from 'src/app/models/artist-search-spotify';
+import { ArtistSpotify } from 'src/app/models/artist-spotify';
 
 @Component({
   selector: 'app-research',
@@ -13,17 +15,22 @@ export class ResearchComponent implements OnInit {
   typeResearch = new FormControl('', [Validators.required]);
   valueResearch = new FormControl('', [Validators.required]);
 
-  resultSearch: ArtistSearchSpotify[];
+  resultSearch: ArtistSpotify[];
+  @Output() artistEditEvent = new EventEmitter<ArtistSpotify>();
 
-  constructor(private researchService: ResearchService) { }
+  constructor(private researchService: ResearchService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
-    console.log('time to looking for...');
     this.researchService.searchInApi(this.typeResearch.value, this.valueResearch.value)
       .subscribe(data => this.resultSearch = data);
+  }
+
+  editArtistData(artist: ArtistSpotify) {
+    this.artistEditEvent.emit(artist);
   }
 
 }
