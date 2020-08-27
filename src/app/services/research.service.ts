@@ -10,14 +10,12 @@ import { Observable } from 'rxjs';
 export class ResearchService {
 
   private urlApi = environment.apiUrl;
+  private searchByName = '/searchByName?name=';
 
   constructor(private http: HttpClient) { }
 
   searchInApi(type: string, research: string): Observable<ArtistSpotify[]> {
-    // console.log('type => ' + type);
-    // console.log('research => ' + research);
-    const url = this.urlApi + '/' + type + '/searchByName?name=' + research;
-    // console.log('url => ' + url);
+    const url = this.urlApi + '/' + type + this.searchByName + research;
     return this.http.get<ArtistSpotify[]>(url);
   }
 

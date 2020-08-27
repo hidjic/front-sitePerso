@@ -41,7 +41,7 @@
             <div *ngFor="let res of resultSearch">
                 <div class="resultSearch" fxLayout="row">
                     <div fxFlex="20" fxLayoutAlign="center center">
-                        <img *ngIf="res.images[0]" src="{{ res.images[1].url }}" alt="photo of {{ res.name }}">
+                        <img *ngIf="res.images[0]" class="imgArtist" src="{{ res.images[1].url }}" alt="photo of {{ res.name }}">
                         <span *ngIf="!res.images[0]" class="material-icons">image_not_supported</span>
                     </div>
                     <div fxFlex="70">
@@ -52,10 +52,8 @@
                         <li>followers : {{ res.followers.total | number }}</li>
                     </div>
                     <div fxLayoutAlign="center center">
-                        <!-- <button mat-raised-button routerLink="../editionartist/{{res.id}}" 
-                                routerLinkActive="active" color="primary">Editer</button> -->
-                        <button mat-raised-button routerLink="../editionartist" 
-                                routerLinkActive="active" (click)="editArtistData(res)" color="primary">Editer</button>
+                        <button mat-raised-button routerLink="../editionartist/{{res.id}}" 
+                                routerLinkActive="active" color="primary">Editer</button>
                     </div>
                 </div>
                 <mat-divider></mat-divider>

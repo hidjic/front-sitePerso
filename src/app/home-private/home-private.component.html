@@ -1,9 +1,10 @@
 
-<div fxLayout="row" fxFlexFill>
+<!-- <div fxLayout="row" fxFlexFill> -->
+<div fxLayout="row">
     
     <app-sidenav fxFlex="10" class="sidenav"></app-sidenav>
 
-    <div fxFlex="80" class="container" [artist]="artistEdit" (artistEditEvent)="artistToEdit($event)">
+    <div fxFlex="80" class="container">
         <router-outlet></router-outlet>
     </div>
 

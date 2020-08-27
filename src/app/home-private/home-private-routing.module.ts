@@ -20,8 +20,7 @@ const routes: Routes = [
         children: [
           { path: 'dashboard', component: DashboardComponent },
           { path: 'research', component: ResearchComponent },
-          // { path: 'editionartist/:id', component: ArtistEditComponent},
-          { path: 'editionartist', component: ArtistEditComponent},
+          { path: 'editionartist/:id', component: ArtistEditComponent},
           { path: '', component: HomeComponent }
         ]
       }

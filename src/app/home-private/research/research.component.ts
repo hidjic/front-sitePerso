@@ -16,7 +16,6 @@ export class ResearchComponent implements OnInit {
   valueResearch = new FormControl('', [Validators.required]);
 
   resultSearch: ArtistSpotify[];
-  @Output() artistEditEvent = new EventEmitter<ArtistSpotify>();
 
   constructor(private researchService: ResearchService,
               private router: Router) { }
@@ -27,10 +26,6 @@ export class ResearchComponent implements OnInit {
   onSubmit() {
     this.researchService.searchInApi(this.typeResearch.value, this.valueResearch.value)
       .subscribe(data => this.resultSearch = data);
-  }
-
-  editArtistData(artist: ArtistSpotify) {
-    this.artistEditEvent.emit(artist);
   }
 
 }

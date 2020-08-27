@@ -1,3 +1,43 @@
-<p>artist-edit works!</p>
+<h2>artist-edit works!</h2>
 <p>id : {{ id }}</p>
-<p>{{ artist }}</p>
+
+<h2>artist</h2>
+<!-- <div>{{ artist | json }}</div> -->
+<div fxLayout="row">
+    <div fxFlex="20" fxLayoutAlign="center center">
+        <img *ngIf="artist.images[0]" class="imgArtist" src="{{ artist.images[1].url }}" alt="photo of {{ artist.name }}">
+        <span *ngIf="!artist.images[0]" class="material-icons">image_not_supported</span>
+    </div>
+    <div fxFlex="70">
+        <li>id : {{ artist.id }}</li>
+        <li>name : {{ artist.name }}</li>
+        <li>popularity : {{ artist.popularity }}</li>
+        <li>genres : {{ artist.genres }}</li>
+        <li>followers : {{ artist.followers.total | number }}</li>
+    </div>
+</div>
+
+
+
+
+<h2>albums</h2>
+<!-- <div>{{ res | json }}</div> -->
+<!-- <li *ngFor="let item of listAlbums">{{ item | json }}</li> -->
+<div *ngFor="let album of listAlbums">
+    <div fxLayout="row">
+        <div fxFlex="20" fxLayoutAlign="center center">
+            <img *ngIf="album.images[0]" class="imgArtist" src="{{ album.images[1].url }}" alt="photo of {{ album.name }}">
+            <span *ngIf="!album.images[0]" class="material-icons">image_not_supported</span>
+        </div>
+        <div fxFlex="70">
+            <li>id : {{ album.id }}</li>
+            <li>name : {{ album.name }}</li>
+            <li>type: {{ album.type }}</li>
+            <li>date: {{ album.releaseDate }}</li>
+            <li>precision date: {{ album.releaseDatePrecision }}</li>
+            <li>restriction: {{ album.restriction }}</li>
+            <li class="respectSize">availableMarkets: {{ album.availableMarkets }}</li>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+</div>
