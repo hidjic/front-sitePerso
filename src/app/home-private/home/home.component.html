@@ -1,1 +1,32 @@
-<p>home works!</p>
+<p>home works...</p>
+
+<mat-divider></mat-divider>
+
+<h2>genre</h2>
+<div>{{ genre | json }}</div>
+<div>size => {{ genre.length }}</div>
+
+<mat-divider></mat-divider>
+
+<h2>categories</h2>
+<div>{{ cat | json }}</div>
+<div *ngFor="let item of cat.items">
+    <li>{{ item.name }}</li>
+</div>
+
+<mat-divider></mat-divider>
+
+<h2>feat</h2>
+<div>{{ feat | json }}</div>
+
+<mat-divider></mat-divider>
+
+<h2>newRelease</h2>
+<div>{{ newRelease | json }}</div>
+
+<mat-divider></mat-divider>
+
+<h2>recommendation</h2>
+<div>{{ recommendation | json }}</div>
+
+<mat-divider></mat-divider>
