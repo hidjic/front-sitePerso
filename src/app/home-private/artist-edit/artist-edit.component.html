@@ -5,15 +5,16 @@
 <!-- <div>{{ artist | json }}</div> -->
 <div fxLayout="row">
     <div fxFlex="20" fxLayoutAlign="center center">
-        <img *ngIf="artist.images[0]" class="imgArtist" src="{{ artist.images[1].url }}" alt="photo of {{ artist.name }}">
-        <span *ngIf="!artist.images[0]" class="material-icons">image_not_supported</span>
+        <img *ngIf="artist && artist.images[0]" class="imgArtist" src="{{ artist.images[1].url }}" alt="photo of {{ artist.name }}">
+        <span *ngIf="!artist" class="material-icons">image_not_supported</span>
     </div>
-    <div fxFlex="70">
+    <div *ngIf="artist" fxFlex="70">
         <li>id : {{ artist.id }}</li>
         <li>name : {{ artist.name }}</li>
         <li>popularity : {{ artist.popularity }}</li>
         <li>genres : {{ artist.genres }}</li>
         <li>followers : {{ artist.followers.total | number }}</li>
+        <li>type : {{ artist.type }}</li>
     </div>
 </div>
 
@@ -23,6 +24,7 @@
 <h2>albums</h2>
 <!-- <div>{{ res | json }}</div> -->
 <!-- <li *ngFor="let item of listAlbums">{{ item | json }}</li> -->
+<div>nb album(s) : {{ listAlbums.length }}</div>
 <div *ngFor="let album of listAlbums">
     <div fxLayout="row">
         <div fxFlex="20" fxLayoutAlign="center center">

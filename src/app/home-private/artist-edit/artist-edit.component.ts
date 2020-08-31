@@ -14,7 +14,8 @@ export class ArtistEditComponent implements OnInit {
   id: string;
   res: any;
   artist: ArtistSpotify;
-  listAlbums: AlbumSpotify[];
+  // listAlbums: AlbumSpotify[];
+  listAlbums: Array<AlbumSpotify> = [];
 
   constructor(private route: ActivatedRoute,
               private artistEditService: ArtistEditService) { }
@@ -33,7 +34,17 @@ export class ArtistEditComponent implements OnInit {
 
   getAlbums() {
     this.artistEditService.getArtistAlbumSpotify(this.id).subscribe(
-      data => this.listAlbums = data
+      res => {
+        // res.forEach((data) => {
+        //   if (data.availableMarkets.includes('FR')) {
+        //     console.log(data);
+        //     this.listAlbums.push(data);
+        //   }
+        // });
+        const distinctTitles = [...new Set(this.listAlbums.map(x => x.name))];
+        // this.listAlbums = res.filter(album => album.availableMarkets.includes('FR'));
+        this.listAlbums = res;
+      }
     );
   }
 
