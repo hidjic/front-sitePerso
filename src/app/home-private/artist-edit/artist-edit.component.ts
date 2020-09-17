@@ -33,19 +33,7 @@ export class ArtistEditComponent implements OnInit {
   }
 
   getAlbums() {
-    this.artistEditService.getArtistAlbumSpotify(this.id).subscribe(
-      res => {
-        // res.forEach((data) => {
-        //   if (data.availableMarkets.includes('FR')) {
-        //     console.log(data);
-        //     this.listAlbums.push(data);
-        //   }
-        // });
-        const distinctTitles = [...new Set(this.listAlbums.map(x => x.name))];
-        // this.listAlbums = res.filter(album => album.availableMarkets.includes('FR'));
-        this.listAlbums = res;
-      }
-    );
+    this.artistEditService.getArtistAlbumSpotify(this.id, 'album').subscribe(res => this.listAlbums = res);
   }
 
 }

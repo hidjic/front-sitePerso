@@ -26,6 +26,7 @@
 <!-- <li *ngFor="let item of listAlbums">{{ item | json }}</li> -->
 <div>nb album(s) : {{ listAlbums.length }}</div>
 <div *ngFor="let album of listAlbums">
+    <p>{{ album | json }}</p>
     <div fxLayout="row">
         <div fxFlex="20" fxLayoutAlign="center center">
             <img *ngIf="album.images[0]" class="imgArtist" src="{{ album.images[1].url }}" alt="photo of {{ album.name }}">
@@ -35,6 +36,8 @@
             <li>id : {{ album.id }}</li>
             <li>name : {{ album.name }}</li>
             <li>type: {{ album.type }}</li>
+            <li>albumGroup: {{ album.albumGroup }}</li>
+            <li>albumType: {{ album.albumType }}</li>
             <li>date: {{ album.releaseDate }}</li>
             <li>precision date: {{ album.releaseDatePrecision }}</li>
             <li>restriction: {{ album.restriction }}</li>
