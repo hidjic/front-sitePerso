@@ -11,7 +11,7 @@ export class AlbumSpotify {
     id: string;
     images: Array<ImageSpotify>;
     name: string;
-    releaseDate: string;
+    releaseDate: Date;
     releaseDatePrecision: string;
     restriction: string;
     type: string;

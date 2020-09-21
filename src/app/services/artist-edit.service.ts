@@ -17,14 +17,17 @@ export class ArtistEditService {
 
   constructor(private http: HttpClient) { }
 
-  getArtistSpotify(id: string): Observable<ArtistSpotify> {
-    const url = this.urlApi + this.urlArtistSearchById + id;
-    return this.http.get<ArtistSpotify>(url);
-  }
-
-  getArtistAlbumSpotify(id: string, typeAlbum: string): Observable<AlbumSpotify[]> {
-    const url = this.urlApi + this.urlGetAlbumsByIdArtist + id + '&typeAlbum=' + typeAlbum;
-    return this.http.get<AlbumSpotify[]>(url);
+  getAllData(id: string) {
+    const url = this.urlApi + this.urlGetAlbumsByIdArtist + id + '&typeAlbum=';
+    const urlArtist = this.urlApi + this.urlArtistSearchById + id;
+    return forkJoin([
+      this.http.get<ArtistSpotify>(urlArtist),
+      this.http.get<AlbumSpotify[]>(url + 'album'),
+      this.http.get<AlbumSpotify[]>(url + 'single'),
+      this.http.get<AlbumSpotify[]>(url + 'appears_on'),
+      this.http.get<AlbumSpotify[]>(url + 'compilation')
+    ]
+  );
   }
 
 }

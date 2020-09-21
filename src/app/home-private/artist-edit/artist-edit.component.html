@@ -1,9 +1,15 @@
-<h2>artist-edit works!</h2>
-<p>id : {{ id }}</p>
+<h2 fxLayoutAlign="center">artist-edit Spotify</h2>
+<div class="infoArtistEdition">
+    <p>id : {{ id }}</p>
+    <p>Seulement le marché FR</p>
+    <div fxLayout="row" fxLayoutAlign="start center">
+        <span class="material-icons">report</span>
+        <div>Pour chaque catégories les 50 première réponses</div>
+    </div>
+</div>
 
-<h2>artist</h2>
-<!-- <div>{{ artist | json }}</div> -->
-<div fxLayout="row">
+<h2 class="positionTitleArea">Artist</h2>
+<div class="artistArea" fxLayout="row">
     <div fxFlex="20" fxLayoutAlign="center center">
         <img *ngIf="artist && artist.images[0]" class="imgArtist" src="{{ artist.images[1].url }}" alt="photo of {{ artist.name }}">
         <span *ngIf="!artist" class="material-icons">image_not_supported</span>
@@ -19,30 +25,127 @@
 </div>
 
 
+<mat-accordion multi>
 
+    <mat-expansion-panel class="accordionEditionSpotify" [disabled]="listAlbums.length === 0" expanded>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                nb album(s) : {{ listAlbums.length }}
+                <span *ngIf="listAlbums.length === 50" class="material-icons positionIcons">report</span>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+    
+        <table mat-table [dataSource]="dataSourceAlbums" matSort class="mat-elevation-z8" fxFlex="100">
+            <ng-container matColumnDef="images">
+                <th mat-header-cell *matHeaderCellDef> Cover </th>
+                <td mat-cell *matCellDef="let album">
+                    <img    *ngIf="album.images[0]" class="imgArtist" 
+                            src="{{ album.images[1].url }}" alt="photo of {{ album.name }}">
+                    <span *ngIf="!album.images[0]" class="material-icons">image_not_supported</span>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                <td mat-cell *matCellDef="let album"> {{ album.name }} </td>
+            </ng-container>
+            <ng-container matColumnDef="releaseDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de sortie </th>
+                <td mat-cell *matCellDef="let album"> {{ album.releaseDate | date:'dd/MM/yyyy'}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
 
-<h2>albums</h2>
-<!-- <div>{{ res | json }}</div> -->
-<!-- <li *ngFor="let item of listAlbums">{{ item | json }}</li> -->
-<div>nb album(s) : {{ listAlbums.length }}</div>
-<div *ngFor="let album of listAlbums">
-    <p>{{ album | json }}</p>
-    <div fxLayout="row">
-        <div fxFlex="20" fxLayoutAlign="center center">
-            <img *ngIf="album.images[0]" class="imgArtist" src="{{ album.images[1].url }}" alt="photo of {{ album.name }}">
-            <span *ngIf="!album.images[0]" class="material-icons">image_not_supported</span>
-        </div>
-        <div fxFlex="70">
-            <li>id : {{ album.id }}</li>
-            <li>name : {{ album.name }}</li>
-            <li>type: {{ album.type }}</li>
-            <li>albumGroup: {{ album.albumGroup }}</li>
-            <li>albumType: {{ album.albumType }}</li>
-            <li>date: {{ album.releaseDate }}</li>
-            <li>precision date: {{ album.releaseDatePrecision }}</li>
-            <li>restriction: {{ album.restriction }}</li>
-            <li class="respectSize">availableMarkets: {{ album.availableMarkets }}</li>
-        </div>
-    </div>
-    <mat-divider></mat-divider>
-</div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [disabled]="listSingles.length === 0" class="accordionEditionSpotify">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                nb single(s) : {{ listSingles.length }}
+                <span *ngIf="listSingles.length === 50" class="material-icons positionIcons">report</span>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <table mat-table [dataSource]="dataSourceSingles" matSort class="mat-elevation-z8" fxFlex="100">
+            <ng-container matColumnDef="images">
+                <th mat-header-cell *matHeaderCellDef> Cover </th>
+                <td mat-cell *matCellDef="let single">
+                    <img *ngIf="single.images[0]" class="imgArtist" src="{{ single.images[1].url }}" alt="photo of {{ single.name }}">
+                    <span *ngIf="!single.images[0]" class="material-icons">image_not_supported</span>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                <td mat-cell *matCellDef="let single"> {{ single.name }} </td>
+            </ng-container>
+            <ng-container matColumnDef="releaseDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de sortie </th>
+                <td mat-cell *matCellDef="let single"> {{ single.releaseDate | date:'dd/MM/yyyy'}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+    </mat-expansion-panel>
+    
+    <mat-expansion-panel [disabled]="listAppearOn.length === 0" class="accordionEditionSpotify">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                nb apparition(s) : {{ listAppearOn.length }}
+                <span *ngIf="listAppearOn.length === 50" class="material-icons positionIcons">report</span>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <table mat-table [dataSource]="dataSourceAppearsOn" matSort class="mat-elevation-z8" fxFlex="100">
+            <ng-container matColumnDef="images">
+                <th mat-header-cell *matHeaderCellDef> Cover </th>
+                <td mat-cell *matCellDef="let appearsOn">
+                    <img *ngIf="appearsOn.images[0]" class="imgArtist" src="{{ appearsOn.images[1].url }}" alt="photo of {{ appearsOn.name }}">
+                    <span *ngIf="!appearsOn.images[0]" class="material-icons">image_not_supported</span>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                <td mat-cell *matCellDef="let appearsOn"> {{ appearsOn.name }} </td>
+            </ng-container>
+            <ng-container matColumnDef="releaseDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de sortie </th>
+                <td mat-cell *matCellDef="let appearsOn"> {{ appearsOn.releaseDate | date:'dd/MM/yyyy'}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [disabled]="listCompilation.length === 0" class="accordionEditionSpotify">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                nb compilation(s) : {{ listCompilation.length }}
+                <span *ngIf="listCompilation.length === 50" class="material-icons positionIcons">report</span>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <table mat-table [dataSource]="dataSourceCompilation" matSort class="mat-elevation-z8" fxFlex="100">
+            <ng-container matColumnDef="images">
+                <th mat-header-cell *matHeaderCellDef> Cover </th>
+                <td mat-cell *matCellDef="let compilation">
+                    <img *ngIf="compilation.images[0]" class="imgArtist" src="{{ compilation.images[1].url }}" alt="photo of {{ compilation.name }}">
+                    <span *ngIf="!compilation.images[0]" class="material-icons">image_not_supported</span>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                <td mat-cell *matCellDef="let compilation"> {{ compilation.name }} </td>
+            </ng-container>
+            <ng-container matColumnDef="releaseDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de sortie </th>
+                <td mat-cell *matCellDef="let compilation"> {{ compilation.releaseDate | date:'dd/MM/yyyy'}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+    </mat-expansion-panel>
+
+</mat-accordion>
