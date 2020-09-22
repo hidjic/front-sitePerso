@@ -1,5 +1,13 @@
 .sticky {
     position: fixed;
     top: 0;
-    width: 100%
+    width: 100%;
+    z-index: 10000;
+}
+app-player-spotify{
+    position: fixed;
+    background-color: red;
+    width: 100%;
+    bottom: 0;
+    height: 40em;
 }

@@ -20,6 +20,7 @@ import { FourofourComponent } from './fourofour/fourofour.component';
 
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
+import { PlayerSpotifyComponent } from './player-spotify/player-spotify.component';
 
 
 const appRoutes: Routes = [
@@ -48,6 +49,7 @@ const appRoutes: Routes = [
     HeaderComponent,
     HomePublicComponent,
     FourofourComponent,
+    PlayerSpotifyComponent,
     // HomePrivateComponent,
     // DashboardComponent,
     // ResearchComponent,
